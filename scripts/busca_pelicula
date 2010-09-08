@@ -1,0 +1,1 @@
+find /home/humitos/.aMule/Incoming/ -iname *${1}*

@@ -1,0 +1,5 @@
+rmmod rtl8187
+modprobe rtl8187
+iwconfig wlan0 essid "humitos" mode managed ap 00:0F:A3:F2:12:E4
+ifconfig wlan0 up
+dhclient wlan0

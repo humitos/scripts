@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DESTINO=/home/humitos/backup-trac/`date +%0d-%0m-%0y_%0k-%0M-%0S`
+/home/humitos/.virtualenvs/trac/bin/trac-admin /home/humitos/trachumitos hotcopy $DESTINO
+
+

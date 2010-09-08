@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Paquetes Instalados Manualmente" > /home/humitos/.apt-packages
+aptitude search '~i!~E' | grep -v "i A" | cut -d " " -f 4 >> /home/humitos/.apt-packages

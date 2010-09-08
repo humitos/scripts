@@ -1,0 +1,24 @@
+#!/bin/sh
+
+IMAGE=/home/humitos/esther.img
+MEM=512
+SCRIPT=/etc/qemu-ifup
+CDROM=super_grub_disk_0.9726.iso
+
+ARGS="-hda $IMAGE \
+      -boot c \
+      -m $MEM \
+      -localtime \
+      -smp 2 "
+#      -nographic"
+#      -net nic,vlan=0 \
+#      -net tap,vlan=0, ifname=tap0, script=$SCRIPT \
+
+echo "Loading kqemu kernel module..."
+sudo modprobe kqemu
+echo "...."
+
+echo "Starting QEMU with..."
+echo $ARGS
+echo "...."
+exec qemu $ARGS

@@ -1,0 +1,6 @@
+#!/bin/bash
+URL_BUSCON="http://buscon.rae.es/draeI/SrvltObtenerHtml?origen=RAE&LEMA=$1&SUPIND=0&CAREXT=10000&NEDIC=No#0_1"
+
+curl ${URL_BUSCON} 2>/dev/null \
+  | html2text -nobs \
+  | recode --quiet --force utf8..${LC_CTYPE},HTML..${LC_CTYPE}

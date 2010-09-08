@@ -1,0 +1,10 @@
+date +'  %k:%M, %A %d %b' | aosd_cat \
+#                --back-color=black \
+#                --fade-in=20 \
+#                --fade-out=100 \
+#                --fore-color=green \
+#                --back-opacity=200 \
+#                --padding=30 \
+#                --shadow-offset=0 \
+#                --x-offset=0 \
+#                --y-offset=0

@@ -1,0 +1,9 @@
+echo "Actualizando Python 2.6"
+cd ~/python/python-trunk
+svn up > python2.6-svn.log
+make > python2.6-make.log
+
+echo "Acualizando Python 3.0"
+cd ~/python/py3k
+svn up > python3.0-svn.log
+make > python3.0-make.log
