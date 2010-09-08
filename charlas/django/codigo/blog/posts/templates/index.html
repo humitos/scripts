@@ -1,0 +1,21 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+        <h2>Pagina principal</h2>
+        {% for post in posts %}
+            <h3>{{ post.titulo }}</h3>
+            {% for etiqueta in post.etiquetas.all %}
+                <pre>{{ etiqueta.nombre }}</pre>
+            {% endfor %}
+            <p>{{ post.contenido }}</p>
+            {% for comentario in post.comentario_set.all %}
+                <hr/>
+                <p>Autor: {{ comentario.autor }}</p>
+                <p>Contenido: {{ comentario.contenido }}</p>
+            {% endfor %}
+        {% endfor %}
+    </body>
+
+</html>

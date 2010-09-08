@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Introducción a Django</title>
+<meta name="author" content="Manuel Kaufmann" />
+<meta name="date" content="jue sep 11 22:17:12 ART 2008" />
+<meta name="copyright" content="GNU Free Document License" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="introducci-n-a-django">
+<h1 class="title">Introducción a <a class="reference external" href="http://www.djangoproject.com">Django</a></h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Manuel Kaufmann</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first last reference external" href="mailto:humitos&#64;gmail.com">humitos&#64;gmail.com</a></td></tr>
+<tr><th class="docinfo-name">Revision:</th>
+<td>29</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>jue sep 11 22:17:12 ART 2008</td></tr>
+<tr><th class="docinfo-name">Copyright:</th>
+<td>GNU Free Document License</td></tr>
+</tbody>
+</table>
+<div class="section" id="qu-es-django">
+<h1>¿Qué es Django?</h1>
+<p>Django es un <tt class="docutils literal"><span class="pre">framework</span></tt> de alto nivel hecho en <a class="reference external" href="http://www.python.org">Python</a> para el desarrollo de
+páginas web y a su vez fomenta el desarrollo de aplicaciones rápidas y limpias.
+Este framework nos permite preocuparnos únicamente por las partes específicas
+de nuestro sitio web en vez de las tareas comunes y repetitivas de cualquier
+sitio, como pueden ser, autenticación, permisos, sesiones, formularios,
+listados, etc.</p>
+<div class="section" id="para-qu-se-utiliza">
+<h2>¿Para qué se utiliza?</h2>
+<p>Django permite ser utilizarlo para el desarrollo de un blog, una encuesta, o
+hasta un <tt class="docutils literal"><span class="pre">sistema</span> <span class="pre">completo</span></tt> sin tener ningún tipo de inconveniente y
+facilitando mucho el trabajo. La abstracción que posse en cuanto a las tareas
+comunes permite un rápido diseño como así también su desarrollo.</p>
+</div>
+<div class="section" id="historia">
+<h2>Historia</h2>
+<p>Django nace por una necesidad. En el año 2003, programadores del diario
+<tt class="docutils literal"><span class="pre">Lawrence</span> <span class="pre">Journal-World</span></tt>, Adrian Holovaty y Simon Willison recibían por parte de
+los periodístas muchos pedidos de modificaciones del sitio con muy poco previo
+aviso pero sí con fechas límites.</p>
+<p>En el verano del 2005, luego de haber desarrollado el framework hasta que haga
+funcionar la mayoría de los sitios, el equipo, que ahora incluía a Jacob
+Kaplan-Moss decidió liberar este framework como software de código abierto. El
+nombre Django viene por el guitarrista de jazz Django Reinhardt.</p>
+</div>
+</div>
+<div class="section" id="patr-n-de-dise-o-mvc">
+<h1>Patrón de diseño MVC</h1>
+<p>Es un patrón de arquitectura de software que separa los datos de una
+aplicación, la interfaz de usuario, y la lógica de control en tres componentes
+distintos. El patrón MVC se ve frecuentemente en aplicaciones web, donde la
+vista es la página HTML y el código que provee de datos dinámicos a la página,
+el modelo es el Sistema de Gestión de Base de Datos y la Lógica de negocio y el
+controlador es el responsable de recibir los eventos de entrada desde la vista.</p>
+<blockquote>
+<a class="reference external" href="http://www.wikipedia.com.ar">Wikipedia</a></blockquote>
+<p>Aunque esta definición es bien clara, Django cambia un poco la sigla y utiliza
+MTV para describir su patrón de diseño, significando Models Templates Views. En
+dónde la anología sería Models-Models, Templates-Views y Views-Controler
+comparado con la anterior definición.</p>
+<div class="section" id="modelo-models-py">
+<h2>Modelo (models.py)</h2>
+<p>Este archivo contiene la descripción de las tablas para una aplicación,
+definidas como clases de Python. Usando estas clases de Python se pueden crear,
+buscar, actualizar y borrar entradas de la base de datos usando código Python
+en vez de sentencias SQL.</p>
+</div>
+<div class="section" id="vista-views-py">
+<h2>Vista (views.py)</h2>
+<p>En él se encuentra toda la lógica que se necesita para mostrar los resultados
+en la pantalla. Por ejemplo, procesar un ingreso de datos proveniente del
+usuario. A cada una de estas funciones se las llama <tt class="docutils literal"><span class="pre">vista</span></tt>.</p>
+</div>
+<div class="section" id="plantillas-index-html">
+<h2>Plantillas (index.html)</h2>
+<p>Las plantillas son simplemente código <tt class="docutils literal"><span class="pre">HTML</span></tt> el cual describe el aspecto que
+tendrá nuestra página al ser renderizada por el navegador. Además se puede
+escribir en el lenguaje de plantillas de Django para realizar algunas cosas
+especiales.</p>
+</div>
+</div>
+<div class="section" id="instalaci-n">
+<h1>Instalación</h1>
+<pre class="literal-block">
+[humitos]$ wget -c http://www.djangoproject.com/download/1.0/tarball/
+[humitos]$ tar xzvf Django-1.0.tar.gz
+......
+[humitos]$ cd Django-1.0
+[humitos]$ sudo python setup.py install
+</pre>
+<div class="section" id="prueba">
+<h2>Prueba</h2>
+<pre class="literal-block">
+[humitos]$ python
+Python 2.5.2 (r252:60911, Aug  6 2008, 09:17:29)
+[GCC 4.3.1] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; django.VERSION
+(1, 0, 'final')
+&gt;&gt;&gt;
+</pre>
+</div>
+</div>
+<div class="section" id="comenzar-un-proyecto">
+<h1>Comenzar un proyecto</h1>
+<pre class="literal-block">
+[humitos]$ django-admin.py startproject blog
+[humitos]$ ls blog/
+__init__.py  manage.py  settings.py  urls.py
+[humitos]$ python manage.py runserver
+</pre>
+<p>¡Ya está! Ahora si vamos a un navegador web y en la url ponemos
+<a class="reference external" href="http://localhost:8000">http://localhost:8000</a> veremos que Django nos muestra la página de bienvenida:
+<tt class="docutils literal"><span class="pre">It</span> <span class="pre">worked!</span></tt>.</p>
+<p>Anteriormente vimos que al ejecutar <tt class="docutils literal"><span class="pre">startproject</span></tt> Django nos crea cuatro
+archivos de Python:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">___init___.py</span></tt>: es un archivo requerido por Python para indicarle que
+trate a este directorio como un paquete (conjunto de módulos).</li>
+<li><tt class="docutils literal"><span class="pre">manage.py</span></tt>: utilidad de línea de comandos para interactuar con el
+proyecto de Django creado anteriormente.</li>
+<li><tt class="docutils literal"><span class="pre">settings.py</span></tt>: archivo de configuraciones para el proyecto actual,
+entre ellas idioma, base de datos, etc.</li>
+<li><tt class="docutils literal"><span class="pre">urls.py</span></tt>: aquí se encuentran las declaraciones de las urls del sitio
+web que estamos desarrollando.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="mapear-url-s">
+<h1>Mapear URL's</h1>
+<p>Django concuerda cada url que se escribe en el navegador con una función vista,
+de tal manera que al acceder a un determinado lugar del sitio se llame a la
+función que nosotros indicamos. Esto se hace mediante expresiones regulares, en
+comparación con otros frameworks que es de acuerdo a la estructura de los
+directorios.</p>
+<div class="section" id="expresiones-regulares">
+<h2>Expresiones Regulares</h2>
+<p>Este mapeo del que hablamos se indica mediante expresiones regulares, lo que
+nos permite tener el control absoluto sobre las url y poder hacer fácilmente lo
+que queramos: restringir una url a que contenga cierta cantidad de números
+en un lugar predeterminado, por ejemplo.</p>
+<p>Django además nos permite utilizar grupos (nombrados o no) en las expresiones
+regulares, que luego serán pasados como argumento a nuestra función vista. Si
+utilizamos grupos nombrados, no importa el orden de los argumentos en la
+definición de la función, pero por el contario, el primer argumento será el
+primer grupo que aparezca en la expresión regular.</p>
+</div>
+<div class="section" id="funcion-para-la-url">
+<h2>Funcion para la url</h2>
+<p>La forma de indicarle a Django cual es la función vista que debe utilizar para
+cada una de las urls que queramos es pasarle una cadena de caracteres con la
+ruta para llegar a esta función (en sintaxis de Python) o bien pasarle
+diréctamente el objeto función que queremos. Cada una de estas vistas debe
+devolver un objeto HttpResponse.</p>
+</div>
+</div>
+<div class="section" id="crear-una-aplicaci-n">
+<h1>Crear una aplicación</h1>
+<div class="section" id="qu-es-una-aplicaci-n">
+<h2>¿Qué es una aplicación?</h2>
+<p>Una aplicación es un conjunto de archivos de código fuente de Python,
+incluyendo sus propios modelos y vista y que se encuentran agrupados en un
+mismo paquete. Por otro lado, un proyecto es un conjunto de aplicaciones, el
+cual establece las configuraciones globales para cada una de ellas, por ejemplo
+la conexión a la base de datos.</p>
+<p>Lo bueno de tener separadas las distintas aplicaciones, es que luego se pueden
+reutilizar sin modificar nada en el código ya que las cosas que están
+relacionadas con el proyecto no se encuentran dentro de estas. Django viene con
+una cantidad de aplicaciones listas para usar, entre ellas, el sistema de
+administración.</p>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo</h2>
+<pre class="literal-block">
+[humitos]$ python manage.py startapp posts
+</pre>
+<p>Notar que utilizamos <tt class="docutils literal"><span class="pre">manage.py</span></tt> en vez de <tt class="docutils literal"><span class="pre">django-admin.py</span></tt>. Estos
+archivos tiene una funcionabilidad muy similar, pero utilizando el primero nos
+evitamos tener que indicarle la ruta del proyecto que queremos utilizar.</p>
+<p>Luego de ejecutar esta senticia se crea un directorio <tt class="docutils literal"><span class="pre">posts</span></tt> con tres
+archivos: <tt class="docutils literal"><span class="pre">__init__.py</span></tt>, <tt class="docutils literal"><span class="pre">models.py</span></tt> y <tt class="docutils literal"><span class="pre">views.py</span></tt>, que son los mismos que
+explicamos anteriormente pero para esta aplicación específica. Todos se
+encuentran vacíos y es dónde pondremos el código que corresponda en cada caso.</p>
+</div>
+</div>
+<div class="section" id="modelos">
+<h1>Modelos</h1>
+<p>Los modelos hacen referencia a todo lo que esté relacionado con la base de
+datos. En cada una de las aplicaciones definimos las clases (tablas en SQL)
+necesarias para que esta aplicación pueda funcionar correctamente.</p>
+<div class="section" id="configuraci-n-del-motor">
+<h2>Configuración del motor</h2>
+<p>Como la elección del motor de base de datos a utilizar es una configuración a
+nivel de proyecto, necesitamos indicar esto en el archivo <tt class="docutils literal"><span class="pre">settings.py</span></tt> que
+nos creó Django al momento de iniciar el proyecto.</p>
+<p>En este archivo se encuentra una sección con campos similares a estos:</p>
+<pre class="literal-block">
+DATABASE_ENGINE = ''
+DATABASE_NAME = ''
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
+</pre>
+<p>En donde se puede indicar el nombre del motor a utilizar, nombre de la base de
+datos, nombre del usuario, contraseña y demás. En caso de utilizar SQLite hay
+que indicar únicamente el campo <tt class="docutils literal"><span class="pre">DATABASE_NAME</span></tt> con un path al archivo en el
+disco. Para empezar y también para proyectos chicos es recomendable utilizar
+este motor, ya que es sencillo de configurar y no requiere módulos extras.</p>
+</div>
+<div class="section" id="definici-n-de-modelos">
+<h2>Definición de modelos</h2>
+<p>Para crear un modelo debemos editar el archivo <tt class="docutils literal"><span class="pre">models.py</span></tt> de la aplicación
+que necesite de estos. En principio vamos a crear la tabla <tt class="docutils literal"><span class="pre">post</span></tt> definiendo
+una clase en el archivo de esta aplicación:</p>
+<pre class="literal-block">
+from django.db import models
+
+class Post(models.Model):
+    titulo = models.CharField(max_length=50)
+    contenido = models.TextField()
+    etiquetas = models.ManyToManyField(Etiqueta)
+</pre>
+<p>Definimos una clase <tt class="docutils literal"><span class="pre">Post</span></tt> que contendrá un <em>título</em> y será un string de
+longitud máxima igual a 50, un campo <em>contenido</em> que será un string largo al
+cual luego el administrador lo representará como un <tt class="docutils literal"><span class="pre">&lt;textarea&gt;</span></tt> (entrada
+multilínea) en el que se guardará el contenido mismo del post y <em>etiquetas</em>
+que establece una relación muchos a muchos con <tt class="docutils literal"><span class="pre">Etiqueta</span></tt>.</p>
+<p>Ahora definamos los modelos <tt class="docutils literal"><span class="pre">Etiqueta</span></tt> y <tt class="docutils literal"><span class="pre">Comentario</span></tt>:</p>
+<pre class="literal-block">
+class Etiqueta(models.Model):
+    nombre = models.CharField(max_length=25)
+
+class Comentario(models.Model):
+    autor = models.CharField(max_length=25)
+    contenido = models.TextField()
+    post = models.ForeignKey(Post)
+</pre>
+<p>Una vez que tenemos esto creado en el modelo, lo que resta es instalar esta
+nueva aplicación en el proyecto y sincronizar la base de datos con el
+modelo. Para la instalación, editamos el archivo <tt class="docutils literal"><span class="pre">settings.py</span></tt> y agregamos
+nuetra aplicación a la variable <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> que no es más que una tupla
+de strings:</p>
+<pre class="literal-block">
+INSTALLED_APPS = (
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.sites',
+'blog.posts',
+)
+</pre>
+<p>Lo que resta entonces es sincronizar la base de datos, para esto se debe
+ejecutar la siguiente sentencia de línea de comandos:</p>
+<pre class="literal-block">
+[humitos]$ python manage.py syncdb
+</pre>
+<p>En este momento nos pregunta si queremos crear una cuenta para el
+administrador, luego nos pedirá un email y su password. Una vez que este
+comando finalice tendremos creadas nuestras tablas.</p>
+</div>
+<div class="section" id="id1">
+<h2>Prueba</h2>
+<pre class="literal-block">
+[humitos]$ python manage.py shell
+Python 2.5.2 (r252:60911, Aug  6 2008, 09:17:29)
+[GCC 4.3.1] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from posts.models import Post
+&gt;&gt;&gt; Post.objects.all()
+[]
+&gt;&gt;&gt; p = Post(titulo='Hola Mundo!', contenido='Hola a todos, este es mi primer post')
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; Post.objects.all()
+[&lt;Post: Post object&gt;]
+&gt;&gt;&gt;
+</pre>
+<p>Lo que acabamos de hacer es insertar en el modelo un nuevo objeto post, con
+título <em>Hola Mundo!</em> y un contenido. Además no se encuentra relacionado con
+ninguna etiqueta. Una vez guardado el objeto, consultamos nuevamente la base de
+datos y nos dice que se encuetra un Post como resultado.</p>
+</div>
+<div class="section" id="sistema-de-administraci-n">
+<h2>Sistema de Administración</h2>
+<p>Django trae consigo una aplicación muy interesante: el sistema de
+administración. Éste nos permite agregar, quitar y modificar usuarios con un
+enterno web muy agradable y sencillo. Por ejemplo podemos probar lo que hicimos
+en la sección anterior únicamente haciendo clicks.</p>
+<p>Primero se debe <tt class="docutils literal"><span class="pre">instalar</span></tt> la aplicación en Django por lo que las
+aplicaciones instaladas quedarían así:</p>
+<pre class="literal-block">
+INSTALLED_APPS = (
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.sites',
+'django.contrib.admin',
+'blog.posts',
+)
+</pre>
+<p>Luego hay que sincronizar nuevamente la base de datos, ya que el sistema de
+administración tiene sus propias tablas. Si no estamos seguros qué va a suceder
+antes de ejecutar <tt class="docutils literal"><span class="pre">syncdb</span></tt> lo podemos comprobar utilizando este comando:</p>
+<pre class="literal-block">
+[humitos]$ python manage.py sql admin
+BEGIN;
+CREATE TABLE &quot;django_admin_log&quot; (
+    &quot;id&quot; integer NOT NULL PRIMARY KEY,
+    &quot;action_time&quot; datetime NOT NULL,
+    &quot;user_id&quot; integer NOT NULL REFERENCES &quot;auth_user&quot; (&quot;id&quot;),
+    &quot;content_type_id&quot; integer NULL REFERENCES &quot;django_content_type&quot; (&quot;id&quot;),
+    &quot;object_id&quot; text NULL,
+    &quot;object_repr&quot; varchar(200) NOT NULL,
+    &quot;action_flag&quot; smallint unsigned NOT NULL,
+    &quot;change_message&quot; text NOT NULL
+)
+;
+COMMIT;
+</pre>
+<p>Una vez que estamos seguro que es esto lo que queremos hacer, ejecutamos estas
+sentencias con el comando <tt class="docutils literal"><span class="pre">syncdb</span></tt>:</p>
+<pre class="literal-block">
+[humitos]$ python manage.py syncdb
+Creating table django_admin_log
+Installing index for admin.LogEntry model
+</pre>
+<p>Descomentamos las líneas del archivo <tt class="docutils literal"><span class="pre">urls.py</span></tt>:</p>
+<pre class="literal-block">
+from django.contrib import admin
+admin.autodiscover()
+...
+(r'^admin/(.*)', admin.site.root),
+</pre>
+<p>Ahora accediendo a la dirección <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> nos debe mostrar
+una pantalla de login. Si indicamos el nombre de usuario y la contraseña que
+pusimos al crear el proyecto deberíamos poder ingresar al sitio de
+administración.</p>
+<p>En este momento aún no aparecen nuestra aplicaciones que hemos creados, le
+tenemos que indicar a Django que deseamos que las muestre. Para esto basta con
+crear un archivo <tt class="docutils literal"><span class="pre">admin.py</span></tt> dentro de la aplicación que queremos mostrar, en
+este caso <tt class="docutils literal"><span class="pre">posts</span></tt>:</p>
+<pre class="literal-block">
+from blog.posts.models import Post
+from django.contrib import admin
+
+admin.site.register(Post)
+</pre>
+</div>
+</div>
+<div class="section" id="vistas">
+<h1>Vistas</h1>
+<p>Una función de vista no es más que una función de Python que recibe como
+argumento una petición web y retorna una respuesta web. Esta respuesta puede
+ser código HTML, una imágen, un archivo de texto, o cualquier otra cosa.</p>
+<p>Al estar separadas las aplicaciones cada una de estas pueden tener lsa vistas
+que necesite, al igual que ocurría con los modelos. En este caso vamos a hacer
+la vista para agregar un nuevo post al blog:</p>
+<pre class="literal-block">
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.forms import ModelForm
+from blog.posts.models import PostForm, Post
+
+def agregar_post(request):
+    if request.method == 'GET':
+        formulario = PostForm()
+        return render_to_response('agregar_post.html', {'formulario': formulario})
+    else:
+        formulario = PostForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+        return HttpResponseRedirect('/')
+</pre>
+<p>Quedaría modificar el archivo <tt class="docutils literal"><span class="pre">urls.py</span></tt> para que cuando se ingrese a
+<a class="reference external" href="http://localhost:8000/posts/agregar">http://localhost:8000/posts/agregar</a> se ejecute la vista que acabamos de
+definir. Una vez hecho esto al ingresar a esta dirección se presenta un
+formulario para completar con los campos del modelo Post. Al presionar el
+botón se guarda este formulario en el modelo y se redirecciona a la página
+principal del blog.</p>
+</div>
+<div class="section" id="sistema-de-plantillas">
+<h1>Sistema de plantillas</h1>
+</div>
+</div>
+</body>
+</html>
