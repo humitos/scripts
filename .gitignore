@@ -1,1 +1,5 @@
 reconectar_router
+*.pyc
+*#
+database.db
+

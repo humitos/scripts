@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     (r'^agregar/$', 'newblog.posts.views.agregar_post'),
+    (r'^$', 'newblog.posts.views.index'),
 
 )
