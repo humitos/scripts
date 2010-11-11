@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# si queremos chequear en que red estamos por el SSID, podemos
+# usar este comando:
+# humitos@eulogia: ~ $ sudo iwgetid --raw
+# TP-LINK_D5F1FC
+# humitos@eulogia: ~ $ 
+
+IF=$1
+STATUS=$2
+USER=humitos
+
+wait_for_process() {
+  PNAME=$1
+  PID=`/usr/bin/pgrep $PNAME`
+  while [ -z "$PID" ]; do
+        sleep 3;
+        PID=`/usr/bin/pgrep $PNAME`
+  done
+}
+
+apply_apt_proxy() {
+     wait_for_process nm-applet
+     PROXY='Acquire::http::Proxy "http://192.168.1.143:3142/";'
+     echo $PROXY > /etc/apt/apt.conf.d/10proxy
+}
+
+remove_apt_proxy() {
+     rm -f /etc/apt/apt.conf.d/10proxy
+}
+ 
+if [ "$STATUS" = "up" ]; then
+    if [ "`iwgetid --raw`" = "delirious" ]; then
+        apply_apt_proxy
+        exit $?
+    fi
+fi
+
+remove_apt_proxy
+exit $?
+

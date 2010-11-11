@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# si queremos chequear en que red estamos por el SSID, podemos
+# usar este comando:
+# humitos@eulogia: ~ $ sudo iwgetid --raw
+# TP-LINK_D5F1FC
+# humitos@eulogia: ~ $ 
+
+IF=$1
+STATUS=$2
+USER=humitos
+
+wait_for_process() {
+  PNAME=$1
+  PID=`/usr/bin/pgrep $PNAME`
+  while [ -z "$PID" ]; do
+        sleep 3;
+        PID=`/usr/bin/pgrep $PNAME`
+  done
+}
+
+sync_fotos_to_michifus() {
+     wait_for_process nm-applet
+     su humitos -c "\
+	rsync --recursive \
+	   --human-readable \
+	   --checksum \
+	   --verbose \
+	   --progress \
+	   --numeric-ids \
+	   --exclude=*.db \
+	   /home/humitos/fotos 192.168.1.143:/home/humitos"
+}
+
+if [ "$STATUS" = "up" ]; then
+    if [ "`iwgetid --raw`" = "delirious" ]; then
+        sync_fotos_to_michifus
+        exit $?
+    fi
+fi
+
+exit $?
+

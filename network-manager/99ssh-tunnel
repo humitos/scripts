@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# si queremos chequear en que red estamos por el SSID, podemos
+# usar este comando:
+# humitos@eulogia: ~ $ sudo iwgetid --raw
+# TP-LINK_D5F1FC
+# humitos@eulogia: ~ $ 
+
+IF=$1
+STATUS=$2
+USER=humitos
+PID=/var/run/ssh-tunnel.pid
+
+wait_for_process() {
+  PNAME=$1
+  PID=`/usr/bin/pgrep $PNAME`
+  while [ -z "$PID" ]; do
+        sleep 3;
+        PID=`/usr/bin/pgrep $PNAME`
+  done
+}
+
+create_ssh_tunnel() {
+    wait_for_process nm-applet
+    su $USER -c "killall ssh"
+    su $USER -c "ssh -C -L 9000:localhost:9000 humitos@humitos.homelinux.net -f -N; echo $! > $PID"
+}
+
+remove_ssh_tunnel() {
+    su $USER -c "kill -9 `cat $PID`"
+}
+ 
+if [ "$STATUS" = "up" ]; then
+    create_ssh_tunnel
+fi
+
+exit $?
+
